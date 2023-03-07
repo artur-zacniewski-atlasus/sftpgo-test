@@ -1,0 +1,16 @@
+version: '3.5'
+services:
+  sftpgo:
+    build: .
+    container_name: sftpgo-${USER}
+    ports:
+      - '8080:8080'
+      - '2022:2022'
+      - '2121:2121'
+      - '8090:8090'
+      - '50000-50100:50000-50100'
+    env_file: sftpgo.env
+    volumes:
+      - ./data/sftpgo_data:/srv/sftpgo
+      - ./data/sftpgo_home:/var/lib/sftpgo
+      - ./data/sftpgo_certs:/certs:ro
