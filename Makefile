@@ -1,4 +1,4 @@
-DOCKER_COMPOSE_SETTINGS  = --project-name ${USER}_sftpgo --env-file sftpgo.env -f sftpgo-docker-compose.yaml
+DOCKER_COMPOSE_SETTINGS  = --project-name ${USER}_sftpgo --env-file sftpgo.env -f sftpgo-docker-compose.yml
 
 docker-build:
 	docker-compose $(DOCKER_COMPOSE_SETTINGS) build

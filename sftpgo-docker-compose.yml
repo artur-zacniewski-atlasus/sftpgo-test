@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   sftpgo:
-    build: .
+    image: drakkan/sftpgo
     container_name: sftpgo-${USER}
     ports:
       - '8080:8080'
@@ -13,4 +13,4 @@ services:
     volumes:
       - ./data/sftpgo_data:/srv/sftpgo
       - ./data/sftpgo_home:/var/lib/sftpgo
-      - ./data/sftpgo_certs:/certs:ro
+      #- ./data/sftpgo_certs:/certs:ro
