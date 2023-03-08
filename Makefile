@@ -4,7 +4,7 @@ docker-build:
 	docker-compose $(DOCKER_COMPOSE_SETTINGS) build
 
 docker-up:
-	docker-compose $(DOCKER_COMPOSE_SETTINGS) up -d
+	docker-compose $(DOCKER_COMPOSE_SETTINGS) up -d --remove-orphans
 	
 docker-down:
 	docker-compose $(DOCKER_COMPOSE_SETTINGS) down

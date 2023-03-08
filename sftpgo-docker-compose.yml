@@ -11,23 +11,16 @@ services:
       - '50000-50100:50000-50100'
     env_file: sftpgo.env
     volumes:
-      - ./:/srv/sftpgo
-    depends_on:
-      db:
-        condition: service_healthy
-
+      - ./data/sftpgo_data:/srv/sftpgo
+      - ./data/sftpgo_home:/var/lib/sftpgo
+      #- ./data/sftpgo_certs:/certs:ro
   db:
     image: postgres
     container_name: db-${USER}
-    env_file: sftpgo.env
     environment:
-      POSTGRES_USER: "${SFTPGO_DATA_PROVIDER__USERNAME}"
-      POSTGRES_PASSWORD: "${SFTPGO_DATA_PROVIDER__PASSWORD}"
-      POSTGRES_DB: "${POSTGRES_DB}"
+      - "POSTGRES_PASSWORD:password"
+      - "POSTGRES_DB:drim"
+      - "POSTGRES_USER:user"
     restart: always
     volumes:
-      - ./database:/var/lib/postgresql/data
-    healthcheck:
-      test: "pg_isready --username=postgres && psql --username=postgres --list"
-      timeout: 10s
-      retries: 20
+      - ./database:/var/lib/postgresql
